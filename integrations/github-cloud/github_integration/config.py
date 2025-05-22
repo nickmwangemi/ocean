@@ -1,7 +1,9 @@
 import os
-import yaml
 from dataclasses import dataclass
 from typing import Optional
+
+import yaml
+
 
 @dataclass
 class GitHubIntegrationConfig:
@@ -10,11 +12,12 @@ class GitHubIntegrationConfig:
     base_url: str
     integration_identifier: str
 
+
 def load_github_integration_config() -> GitHubIntegrationConfig:
     # Load configuration from config.yaml file
-    config_path = os.path.join(os.path.dirname(__file__), 'config.yaml')
+    config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
     try:
-        with open(config_path, 'r') as file:
+        with open(config_path, "r") as file:
             config = yaml.safe_load(file)
     except FileNotFoundError:
         raise FileNotFoundError(f"Configuration file not found at {config_path}")
@@ -22,18 +25,27 @@ def load_github_integration_config() -> GitHubIntegrationConfig:
         raise ValueError(f"Error parsing YAML configuration file: {e}")
 
     # Safely access nested config keys
-    integration_config = config.get('integration', {})
-    config_values = integration_config.get('config', {})
+    integration_config = config.get("integration", {})
+    config_values = integration_config.get("config", {})
 
-    api_token = config_values.get('api_token', os.getenv('GITHUB_API_TOKEN'))
-    webhook_secret = config_values.get('webhook_secret', os.getenv('GITHUB_WEBHOOK_SECRET'))
-    base_url = config_values.get('base_url', os.getenv('GITHUB_BASE_URL', 'https://api.github.com'))
-    integration_identifier = integration_config.get('identifier',
-                                                         os.getenv('OCEAN__INTEGRATION__IDENTIFIER', 'github'))
+    api_token = config_values.get("api_token", os.getenv("GITHUB_API_TOKEN"))
+    webhook_secret = config_values.get(
+        "webhook_secret", os.getenv("GITHUB_WEBHOOK_SECRET")
+    )
+    base_url = config_values.get(
+        "base_url", os.getenv("GITHUB_BASE_URL", "https://api.github.com")
+    )
+    integration_identifier = integration_config.get(
+        "identifier", os.getenv("OCEAN__INTEGRATION__IDENTIFIER", "github")
+    )
 
     # Check for required environment variables
     required_env_vars = ["GITHUB_API_TOKEN", "GITHUB_WEBHOOK_SECRET"]
-    missing_env_vars = [var for var in required_env_vars if not os.getenv(var) and not config['integration']['config'].get(var.lower())]
+    missing_env_vars = [
+        var
+        for var in required_env_vars
+        if not os.getenv(var) and not config["integration"]["config"].get(var.lower())
+    ]
 
     if missing_env_vars:
         raise EnvironmentError(
@@ -44,5 +56,5 @@ def load_github_integration_config() -> GitHubIntegrationConfig:
         api_token=api_token,
         webhook_secret=webhook_secret,
         base_url=base_url,
-        integration_identifier=integration_identifier
+        integration_identifier=integration_identifier,
     )
