@@ -11,7 +11,7 @@ class GitHubClient:
         self.api_token = api_token
         self.base_url = base_url
         self.headers = {
-            "Authorization": f"token {self.api_token}",
+            "Authorization": f"Bearer {self.api_token}",
             "Accept": "application/vnd.github.v3+json",
         }
 
@@ -26,13 +26,19 @@ class GitHubClient:
             while next_url:
                 for attempt in range(max_retries):
                     try:
-                        async with session.get(next_url, headers=self.headers, params=params) as response:
+                        async with session.get(
+                            next_url, headers=self.headers, params=params
+                        ) as response:
                             response_text = await response.text()
 
                             # Handle rate limiting
                             if response.status == 403 and "rate limit" in response_text:
-                                retry_after = int(response.headers.get("Retry-After", 10))
-                                logger.info(f"Rate limit exceeded. Retrying after {retry_after} seconds.")
+                                retry_after = int(
+                                    response.headers.get("Retry-After", 10)
+                                )
+                                logger.info(
+                                    f"Rate limit exceeded. Retrying after {retry_after} seconds."
+                                )
                                 await asyncio.sleep(retry_after)
                                 break
 
@@ -53,9 +59,11 @@ class GitHubClient:
                                 return results  # If it's not a list, return directly
 
                             # Handle pagination
-                            if 'Link' in response.headers:
-                                links = self._parse_link_header(response.headers['Link'])
-                                next_url = links.get('next')
+                            if "Link" in response.headers:
+                                links = self._parse_link_header(
+                                    response.headers["Link"]
+                                )
+                                next_url = links.get("next")
                             else:
                                 next_url = None
 
@@ -65,7 +73,7 @@ class GitHubClient:
                         if attempt == max_retries - 1:
                             logger.error(f"Failed to fetch data from {next_url}: {e}")
                             raise
-                        backoff_time = 2 ** attempt
+                        backoff_time = 2**attempt
                         logger.info(f"Retrying in {backoff_time} seconds...")
                         await asyncio.sleep(backoff_time)
 
@@ -80,10 +88,10 @@ class GitHubClient:
         if not link_header:
             return links
 
-        for link in link_header.split(','):
-            parts = link.split(';')
-            url = parts[0].strip('<> ')
-            rel = parts[1].split('=')[1].strip('"')
+        for link in link_header.split(","):
+            parts = link.split(";")
+            url = parts[0].strip("<> ")
+            rel = parts[1].split("=")[1].strip('"')
             links[rel] = url
 
         return links
