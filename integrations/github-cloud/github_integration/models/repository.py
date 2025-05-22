@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -7,7 +9,7 @@ class Repository(BaseModel):
     full_name: str
     private: bool
     html_url: str
-    description: str
+    description: Optional[str] = None
     fork: bool
     created_at: str
     updated_at: str
@@ -15,7 +17,7 @@ class Repository(BaseModel):
     git_url: str
     ssh_url: str
     clone_url: str
-    homepage: str
+    homepage: Optional[str] = None
     size: int
     stargazers_count: int
     watchers_count: int
