@@ -1,12 +1,12 @@
 port:
-  clientId: ${PORT_CLIENT_ID} # Can be loaded via environment variable: PORT_CLIENT_ID
-  clientSecret: ${PORT_CLIENT_SECRET} # Can be loaded via environment variable: PORT_CLIENT_SECRET
+  clientId: ${PORT_CLIENT_ID}
+  clientSecret: ${PORT_CLIENT_SECRET}
   baseUrl: https://api.getport.io/v1
 
 # The event listener to use for the integration service.
 eventListener:
   type: WEBHOOKS_ONLY # or KAFKA, depending on your setup
-  app_host: "http://localhost:8000" # Update this to your actual host URL
+  app_host: "http://localhost:8000"
 
 integration:
   # The name of the integration.
@@ -14,8 +14,8 @@ integration:
   # The type of the integration.
   type: "github"
   config:
-    api_token: ${GITHUB_API_TOKEN} # Can be loaded via environment variable: GITHUB_API_TOKEN
-    webhook_secret: ${GITHUB_WEBHOOK_SECRET} # Can be loaded via environment variable: GITHUB_WEBHOOK_SECRET
+    api_token: ${GITHUB_API_TOKEN}
+    webhook_secret: ${GITHUB_WEBHOOK_SECRET}
     base_url: https://api.github.com
 
     # Optional: Organization or user to sync
