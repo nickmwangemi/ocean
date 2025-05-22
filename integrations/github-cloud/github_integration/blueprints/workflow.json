@@ -1,0 +1,46 @@
+{
+  "identifier": "github_workflow",
+  "title": "GitHub Workflow",
+  "icon": "github",
+  "schema": {
+    "properties": {
+      "id": {
+        "type": "number",
+        "title": "ID"
+      },
+      "name": {
+        "type": "string",
+        "title": "Name"
+      },
+      "path": {
+        "type": "string",
+        "title": "Path"
+      },
+      "state": {
+        "type": "string",
+        "title": "State"
+      },
+      "created_at": {
+        "type": "string",
+        "title": "Created At"
+      },
+      "updated_at": {
+        "type": "string",
+        "title": "Updated At"
+      },
+      "url": {
+        "type": "string",
+        "title": "URL"
+      },
+      "html_url": {
+        "type": "string",
+        "title": "HTML URL"
+      },
+      "badge_url": {
+        "type": "string",
+        "title": "Badge URL"
+      }
+    },
+    "required": ["id", "name", "path", "state", "created_at", "updated_at", "url", "html_url", "badge_url"]
+  }
+}

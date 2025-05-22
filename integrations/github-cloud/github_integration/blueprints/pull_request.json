@@ -1,0 +1,66 @@
+{
+  "identifier": "github_pull_request",
+  "title": "GitHub Pull Request",
+  "icon": "github",
+  "schema": {
+    "properties": {
+      "id": {
+        "type": "number",
+        "title": "ID"
+      },
+      "number": {
+        "type": "number",
+        "title": "Number"
+      },
+      "title": {
+        "type": "string",
+        "title": "Title"
+      },
+      "state": {
+        "type": "string",
+        "title": "State"
+      },
+      "locked": {
+        "type": "boolean",
+        "title": "Locked"
+      },
+      "html_url": {
+        "type": "string",
+        "title": "HTML URL"
+      },
+      "body": {
+        "type": "string",
+        "title": "Body"
+      },
+      "created_at": {
+        "type": "string",
+        "title": "Created At"
+      },
+      "updated_at": {
+        "type": "string",
+        "title": "Updated At"
+      },
+      "closed_at": {
+        "type": "string",
+        "title": "Closed At"
+      },
+      "merged_at": {
+        "type": "string",
+        "title": "Merged At"
+      },
+      "user": {
+        "type": "object",
+        "title": "User"
+      },
+      "base": {
+        "type": "object",
+        "title": "Base"
+      },
+      "head": {
+        "type": "object",
+        "title": "Head"
+      }
+    },
+    "required": ["id", "number", "title", "state", "locked", "html_url", "body", "created_at", "updated_at", "closed_at", "merged_at", "user", "base", "head"]
+  }
+}
