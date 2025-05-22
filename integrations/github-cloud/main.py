@@ -1,8 +1,10 @@
 import logging
 import os
+
 from port_ocean.context.ocean import ocean
-from github_integration.client import GitHubClient
+
 import github_integration.config
+from github_integration.client import GitHubClient
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -59,7 +61,7 @@ async def fetch_teams(org: str):
 async def fetch_workflows(org: str, repo: str):
     """Fetch workflows for a repository"""
     data = await client.fetch_with_retry(f"/repos/{org}/{repo}/actions/workflows")
-    workflows = data.get('workflows', []) if isinstance(data, dict) else data
+    workflows = data.get("workflows", []) if isinstance(data, dict) else data
     for workflow in workflows:
         yield workflow
 
@@ -75,8 +77,13 @@ async def on_resync(kind: str):
 
     try:
         # Get configuration - you should configure these properly
-        org = os.getenv('GITHUB_ORG', 'your_org')
-        repo = os.getenv('GITHUB_REPO', 'your_repo')
+        org = os.getenv("GITHUB_ORG")
+        repo = os.getenv("GITHUB_REPO")
+        if not org or not repo:
+            logger.error(
+                "Missing required environment variables: GITHUB_ORG and/or GITHUB_REPO"
+            )
+            return []
 
         if kind == "repository":
             repositories = []
