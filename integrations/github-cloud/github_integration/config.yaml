@@ -19,7 +19,7 @@ integration:
     base_url: https://api.github.com
 
     # Optional: Organization or user to sync
-    organization: "your_github_org_or_username"
+    organization: ${GITHUB_ORG:-""}
 
     # Optional: Specific repositories to sync (leave empty for all accessible repos)
     repositories: []
