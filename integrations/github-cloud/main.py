@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 # Global variables for client and config
 client = None
 
+
 @ocean.on_start()
 async def on_start():
     """Initialize the GitHub client when the integration starts"""
@@ -28,11 +29,13 @@ async def on_start():
 
     logger.info("✅ GitHub integration initialized.")
 
+
 async def fetch_repositories(org: str):
     """Fetch repositories for an organization"""
     data = await client.fetch_with_retry(f"/orgs/{org}/repos")
     for repo in data:
         yield repo
+
 
 async def fetch_pull_requests(org: str, repo: str):
     """Fetch pull requests for a repository"""
@@ -40,11 +43,13 @@ async def fetch_pull_requests(org: str, repo: str):
     for pr in data:
         yield pr
 
+
 async def fetch_issues(org: str, repo: str):
     """Fetch issues for a repository"""
     data = await client.fetch_with_retry(f"/repos/{org}/{repo}/issues")
     for issue in data:
         yield issue
+
 
 async def fetch_teams(org: str):
     """Fetch teams for an organization"""
@@ -52,12 +57,14 @@ async def fetch_teams(org: str):
     for team in data:
         yield team
 
+
 async def fetch_workflows(org: str, repo: str):
     """Fetch workflows for a repository"""
     data = await client.fetch_with_retry(f"/repos/{org}/{repo}/actions/workflows")
     workflows = data.get("workflows", []) if isinstance(data, dict) else data
     for workflow in workflows:
         yield workflow
+
 
 @ocean.on_resync()
 async def on_resync(kind: str):
@@ -121,6 +128,7 @@ async def on_resync(kind: str):
     except Exception as e:
         logger.error(f"Error during resync for kind {kind}: {e}")
         return []
+
 
 if __name__ == "__main__":
     ocean.run()
