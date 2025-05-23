@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -11,5 +13,5 @@ class Issue(BaseModel):
     body: str
     created_at: str
     updated_at: str
-    closed_at: str
+    closed_at: Optional[str]
     user: dict
