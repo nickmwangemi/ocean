@@ -1,0 +1,42 @@
+{
+  "identifier": "github_team",
+  "title": "GitHub Team",
+  "icon": "github",
+  "schema": {
+    "properties": {
+      "id": {
+        "type": "number",
+        "title": "ID"
+      },
+      "name": {
+        "type": "string",
+        "title": "Name"
+      },
+      "slug": {
+        "type": "string",
+        "title": "Slug"
+      },
+      "description": {
+        "type": "string",
+        "title": "Description"
+      },
+      "privacy": {
+        "type": "string",
+        "title": "Privacy"
+      },
+      "url": {
+        "type": "string",
+        "title": "URL"
+      },
+      "members_url": {
+        "type": "string",
+        "title": "Members URL"
+      },
+      "repositories_url": {
+        "type": "string",
+        "title": "Repositories URL"
+      }
+    },
+    "required": ["id", "name", "slug", "description", "privacy", "url", "members_url", "repositories_url"]
+  }
+}

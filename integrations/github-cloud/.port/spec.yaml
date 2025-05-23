@@ -1,0 +1,18 @@
+description: github-cloud integration for Port Ocean
+icon: Cookiecutter  # Should be one of the available icons in Port
+features:
+  - type: exporter
+    section: Under Development  # Should be one of the available sections in Port
+    resources:
+      - kind: repository
+      - kind: pull-request
+      - kind: issue
+      - kind: team
+configurations:
+  - name: githubToken
+    required: true
+    type: string
+    sensitive: true
+  - name: githubApiUrl
+    type: url
+    description: "GitHub API base URL (defaults to https://api.github.com)"

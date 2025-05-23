@@ -1,0 +1,54 @@
+{
+  "identifier": "github_issue",
+  "title": "GitHub Issue",
+  "icon": "github",
+  "schema": {
+    "properties": {
+      "id": {
+        "type": "number",
+        "title": "ID"
+      },
+      "number": {
+        "type": "number",
+        "title": "Number"
+      },
+      "title": {
+        "type": "string",
+        "title": "Title"
+      },
+      "state": {
+        "type": "string",
+        "title": "State"
+      },
+      "locked": {
+        "type": "boolean",
+        "title": "Locked"
+      },
+      "html_url": {
+        "type": "string",
+        "title": "HTML URL"
+      },
+      "body": {
+        "type": "string",
+        "title": "Body"
+      },
+      "created_at": {
+        "type": "string",
+        "title": "Created At"
+      },
+      "updated_at": {
+        "type": "string",
+        "title": "Updated At"
+      },
+      "closed_at": {
+        "type": "string",
+        "title": "Closed At"
+      },
+      "user": {
+        "type": "object",
+        "title": "User"
+      }
+    },
+    "required": ["id", "number", "title", "state", "locked", "html_url", "body", "created_at", "updated_at", "closed_at", "user"]
+  }
+}

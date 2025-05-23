@@ -1,0 +1,94 @@
+{
+  "identifier": "github_repository",
+  "title": "GitHub Repository",
+  "icon": "github",
+  "schema": {
+    "properties": {
+      "id": {
+        "type": "number",
+        "title": "ID"
+      },
+      "name": {
+        "type": "string",
+        "title": "Name"
+      },
+      "full_name": {
+        "type": "string",
+        "title": "Full Name"
+      },
+      "private": {
+        "type": "boolean",
+        "title": "Private"
+      },
+      "html_url": {
+        "type": "string",
+        "title": "HTML URL"
+      },
+      "description": {
+        "type": "string",
+        "title": "Description"
+      },
+      "fork": {
+        "type": "boolean",
+        "title": "Fork"
+      },
+      "created_at": {
+        "type": "string",
+        "title": "Created At"
+      },
+      "updated_at": {
+        "type": "string",
+        "title": "Updated At"
+      },
+      "pushed_at": {
+        "type": "string",
+        "title": "Pushed At"
+      },
+      "git_url": {
+        "type": "string",
+        "title": "Git URL"
+      },
+      "ssh_url": {
+        "type": "string",
+        "title": "SSH URL"
+      },
+      "clone_url": {
+        "type": "string",
+        "title": "Clone URL"
+      },
+      "homepage": {
+        "type": "string",
+        "title": "Homepage"
+      },
+      "size": {
+        "type": "number",
+        "title": "Size"
+      },
+      "stargazers_count": {
+        "type": "number",
+        "title": "Stargazers Count"
+      },
+      "watchers_count": {
+        "type": "number",
+        "title": "Watchers Count"
+      },
+      "language": {
+        "type": "string",
+        "title": "Language"
+      },
+      "forks_count": {
+        "type": "number",
+        "title": "Forks Count"
+      },
+      "open_issues_count": {
+        "type": "number",
+        "title": "Open Issues Count"
+      },
+      "default_branch": {
+        "type": "string",
+        "title": "Default Branch"
+      }
+    },
+    "required": ["id", "name", "full_name", "private", "html_url", "description", "fork", "created_at", "updated_at", "pushed_at", "git_url", "ssh_url", "clone_url", "homepage", "size", "stargazers_count", "watchers_count", "language", "forks_count", "open_issues_count", "default_branch"]
+  }
+}
